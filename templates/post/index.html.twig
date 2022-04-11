@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+<h1>Posts index</h1>
+<a class="btn-custom" href="{{ path('post_new') }}">Create New Post</a>
+<a class="btn-custom" href="{{ path('user_edit') }}">User Settings</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.slug }}</td>
+                <td>{{ post.content }}</td>
+                <td>
+                    <a class="btn-custom" href="{{ path('post_show', {'id': post.id}) }}">show</a>
+                    <a class="btn-custom" href="{{ path('post_edit', {'id': post.id})}}">edit</a>
+                    <form method="post" 
+                      action="{{ path('post_delete', {'id':post.id}) }}"
+                      onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                        <button class="btn">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

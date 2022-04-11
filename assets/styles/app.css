@@ -1,0 +1,26 @@
+body {
+    background-color: lightgreen;
+    font-family:Nunito Sans;
+}
+
+table{
+    margin-top:25px;
+}
+
+table td{
+    padding:15px 30px;
+}
+
+.btn-custom{
+    padding:5px 10px;
+    text-decoration:none;
+    color:#111;
+    font-size:.9rem;
+    border:solid 2px #aaa;
+    border-radius:3px;
+    background:#eee;
+}
+.btn-custom:hover{
+    background:#fff;
+    color:#000;
+}
